@@ -12,9 +12,11 @@ namespace PlatPetWebApplicationAPI.Models
         public PlatPetContext(DbContextOptions<PlatPetContext> options)
             : base(options)
         {
+
         }
 
         public DbSet<PlatPetUsuario> PlatPetUsuarios { get; set; }
+        public DbSet<>
 
     }
 }

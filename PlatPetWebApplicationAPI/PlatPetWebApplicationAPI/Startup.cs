@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using PlatPetWebApplicationAPI.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -28,8 +21,11 @@ namespace PlatPetWebApplicationAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<PlatPetContext>(opt =>
-                opt.UseInMemoryDatabase("PlatPetList"));
+
+            string connectionString = "Provider=SQLOLEDB.1;Persist Security Info=False;User ID=platpet;Initial Catalog=PLATPET_201902;Data Source=172.16.48.10";
+
+            services.AddDbContext<PlatPetContext>(opt => opt.UseSqlServer(connectionString));
+            //services.AddDbContext<PlatPetContext>(opt => opt.UseInMemoryDatabase("PlatPetList"));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 

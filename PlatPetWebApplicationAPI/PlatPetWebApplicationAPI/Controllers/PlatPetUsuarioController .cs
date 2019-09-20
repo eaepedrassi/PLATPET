@@ -24,7 +24,7 @@ namespace PlatPetWebApplicationAPI.Controllers
             {
                 // Create a new TodoItem if collection is empty,
                 // which means you can't delete all TodoItems.
-                _context.PlatPetUsuarios.Add(new PlatPetUsuario { UserUsuario = "Admin" });
+                _context.PlatPetUsuarios.Add(new PlatPetUsuario {UserUsuario = "Admin"});
                 _context.SaveChanges();
             }
         }

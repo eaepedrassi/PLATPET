@@ -10,8 +10,9 @@ namespace PlatPetWebApplicationAPI.Models
     public class PlatPetUsuario
     {
         public PlatPetUsuario()
-        { }   
-            [Key]
+        {
+        }   
+        [Key]
         public int IdUsuario { get; set; }
         public string UserUsuario { get; set; }
         public string PassUsuario { get; set; }

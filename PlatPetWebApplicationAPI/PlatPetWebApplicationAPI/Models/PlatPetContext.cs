@@ -16,7 +16,6 @@ namespace PlatPetWebApplicationAPI.Models
         }
 
         public DbSet<PlatPetUsuario> PlatPetUsuarios { get; set; }
-        public DbSet<>
-
+        
     }
 }

@@ -16,6 +16,10 @@ namespace PlatPetWebApplicationAPI.Models
         }
 
         public DbSet<PlatPetUsuario> PlatPetUsuarios { get; set; }
-        
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<PlatPetUsuario>().ToTable("USUARIO");
+
+        }
     }
 }

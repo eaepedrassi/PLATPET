@@ -13,7 +13,7 @@ namespace WebApplicationAPI.Models
 
         protected static string GetStringConexao()
         {
-            return ConfigurationManager.ConnectionStrings["ConexaoPlatPet"].ConnectionString;
+            return ConfigurationManager.ConnectionStrings["CONEXAOPLATPET"].ConnectionString;
         }
 
         public static int InsertUsuario(Usuario usuario)
@@ -21,14 +21,14 @@ namespace WebApplicationAPI.Models
             int reg = 0;
             using (SqlConnection con = new SqlConnection(GetStringConexao()))
             {
-                string sql = "INSERT INTO USUARIO (userUSUARIO, passUSUARIO, tipoUSUARIO, statusUSUARIO) VALUES (@userUSUARIO, @passUSUARIO, @tipoUSUARIO, @statusUSUARIO)";
+                string sql = "INSERT INTO USUARIO (USERUSUARIO, PASSUSUARIO, TIPOUSUARIO, STATUSUSUARIO) VALUES (@USERUSUARIO, @PASSUSUARIO, @TIPOUSUARIO, @STATUSUSUARIO)";
                 using (SqlCommand cmd = new SqlCommand(sql, con))
                 {
                     cmd.CommandType = CommandType.Text;
-                    cmd.Parameters.AddWithValue("@userUSUARIO", usuario.UserUsuario);
-                    cmd.Parameters.AddWithValue("@passUSUARIO", usuario.PassUsuario);
-                    cmd.Parameters.AddWithValue("@tipoUSUARIO", usuario.TipoUsuario);
-                    cmd.Parameters.AddWithValue("@statusUSUARIO", usuario.StatusUsuario);
+                    cmd.Parameters.AddWithValue("@USERUSUARIO", usuario.UserUsuario);
+                    cmd.Parameters.AddWithValue("@PASSUSUARIO", usuario.PassUsuario);
+                    cmd.Parameters.AddWithValue("@TIPOUSUARIO", usuario.TipoUsuario);
+                    cmd.Parameters.AddWithValue("@STATUSUSUARIO", usuario.StatusUsuario);
 
                     con.Open();
                     reg = cmd.ExecuteNonQuery();
@@ -82,7 +82,9 @@ namespace WebApplicationAPI.Models
         public static List<Usuario> GetUsuarios()
         {
             List<Usuario> _Usuarios = new List<Usuario>();
+
             using (SqlConnection con = new SqlConnection(GetStringConexao()))
+
             {
                 con.Open();
                 using (SqlCommand cmd = new SqlCommand("SELECT IDUSUARIO, USERUSUARIO, PASSUSUARIO, TIPOUSUARIO, STATUSUSUARIO FROM USUARIO", con))
@@ -116,7 +118,7 @@ namespace WebApplicationAPI.Models
             using (SqlConnection con = new SqlConnection(GetStringConexao()))
             {
                 con.Open();
-                using (SqlCommand cmd = new SqlCommand("SELECT IDUSUARIO, USERUSUARIO, PASSUSUARIO, tipoUSUARIO, STATUSUSUARIO FROM USUARIO WHERE IDUSUARIO = @IDUSUARIO", con))
+                using (SqlCommand cmd = new SqlCommand("SELECT IDUSUARIO, USERUSUARIO, PASSUSUARIO, TIPOUSUARIO, STATUSUSUARIO FROM USUARIO WHERE IDUSUARIO = @IDUSUARIO", con))
                 {
                     cmd.Parameters.AddWithValue("@IDUSUARIO", id);
 
@@ -130,7 +132,7 @@ namespace WebApplicationAPI.Models
                                 usuario.IdUsuario = Convert.ToInt32(dr["IDUSUARIO"]);
                                 usuario.UserUsuario = dr["USERUSUARIO"].ToString();
                                 usuario.PassUsuario = dr["PASSUSUARIO"].ToString();
-                                usuario.TipoUsuario = Convert.ToInt32(dr["tipoUSUARIO"]);
+                                usuario.TipoUsuario = Convert.ToInt32(dr["TIPOUSUARIO"]);
                                 usuario.StatusUsuario = Convert.ToInt32(dr["STATUSUSUARIO"]);
                             }
                         }

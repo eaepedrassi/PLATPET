@@ -27,10 +27,10 @@ namespace WebApplicationAPI.Controllers
         // GET: api/Clientes/5
         public Usuario GetUsuario(int id)
         {
-            var Cliente = _usuariosRepositorio.GetById(id);
+            var Usuario = _usuariosRepositorio.GetById(id);
 
 
-            return Cliente;
+            return Usuario;
         }
 
         // POST: api/Clientes   

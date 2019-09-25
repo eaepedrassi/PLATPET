@@ -153,16 +153,20 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\EmpresasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Empresa\Empresa.cs" />
+    <Compile Include="Models\Empresa\EmpresaDAL.cs" />
+    <Compile Include="Models\Empresa\EmpresaRepositorio.cs" />
     <Compile Include="Models\IRepositorio.cs" />
-    <Compile Include="Models\Usuario.cs" />
-    <Compile Include="Models\UsuarioDAL.cs" />
-    <Compile Include="Models\UsuarioRepositorio.cs" />
+    <Compile Include="Models\Usuario\Usuario.cs" />
+    <Compile Include="Models\Usuario\UsuarioDAL.cs" />
+    <Compile Include="Models\Usuario\UsuarioRepositorio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -258,6 +262,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Empresas\" />
     <Folder Include="Views\Usuarios\" />
   </ItemGroup>
   <ItemGroup>

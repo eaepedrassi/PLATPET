@@ -19,6 +19,5 @@ namespace WebApplicationAPI.Models.Empresa
         public string EmailEmpresa { get; set; }
         public string TelEmpresa { get; set; }
         public string EndEmpresa { get; set; }
-
     }
 }

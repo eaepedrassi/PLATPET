@@ -153,6 +153,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\CadUsuariosController.cs" />
     <Compile Include="Controllers\EmpresasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PessoasController.cs" />
@@ -161,6 +162,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CadUsuario\CadUsuarioDAL.cs" />
+    <Compile Include="Models\CadUsuario\CadUsuario.cs" />
+    <Compile Include="Models\CadUsuario\CadUsuarioRepositorio.cs" />
     <Compile Include="Models\Empresa\Empresa.cs" />
     <Compile Include="Models\Empresa\EmpresaDAL.cs" />
     <Compile Include="Models\Empresa\EmpresaRepositorio.cs" />
@@ -266,6 +270,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\CadUsuarios\" />
     <Folder Include="Views\Empresas\" />
     <Folder Include="Views\Pessoas\" />
     <Folder Include="Views\Usuarios\" />

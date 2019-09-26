@@ -35,7 +35,7 @@ namespace WebApplicationAPI.Controllers
 
         // POST: api/Clientes   
         [HttpPost()]
-        public void Post([FromBody]CadUsuario cadusuario)
+        public void Post([FromBody]CadUsuario cadusuario,int tpuser)
         {
             _cadusuariosRepositorio.Insert(cadusuario,tpuser);
         }

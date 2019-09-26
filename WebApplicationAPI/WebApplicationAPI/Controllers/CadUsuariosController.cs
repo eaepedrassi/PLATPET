@@ -25,12 +25,11 @@ namespace WebApplicationAPI.Controllers
         }
 
         // GET: api/Clientes/5
-        public CadUsuario GetEmpresa(int id)
+        public CadUsuario GetCadUsuario(int id)
         {
-            var Empresa = _cadusuariosRepositorio.GetById(id);
+            var CadUsuario = _cadusuariosRepositorio.GetById(id);
 
-
-            return Empresa;
+            return CadUsuario;
         }
 
         // POST: api/Clientes   
@@ -42,9 +41,9 @@ namespace WebApplicationAPI.Controllers
 
         // PUT: api/Clientes/5
         [HttpPut()]
-        public void Put([FromBody]CadUsuario cadusuario)
+        public void Put([FromBody]CadUsuario cadusuario,int tpuser)
         {
-            _cadusuariosRepositorio.Update(cadusuario);
+            _cadusuariosRepositorio.Update(cadusuario,tpuser);
         }
         /*
         // DELETE: api/Clientes/5

@@ -24,18 +24,18 @@ namespace WebApplicationAPI.Models.CadUsuario
                 string sql = " INSERT INTO USUARIO (USERUSUARIO,PASSUSUARIO,TIPOUSUARIO,STATUSUSUARIO) VALUES (@USER,@PASS,@TIPO,@STATUS) ";
                 if (tpuser == 2)
                 {
-                    sql += " INSERT INTO PESSOA (IDUSUARIO,CPFPESSOA,TELPESSOA,EMAILPESSOA,ENDPESSOA,NOMEPESSOA,SOBRENOMEPESSOA)	VALUES	(SCOPE_IDENTITY() ,@CGC,@TEL,@EMAIL,@END,@NOME,@SNOME) ";
+                    sql += " INSERT INTO PESSOA (IDUSUARIO,CPFPESSOA,TELPESSOA,EMAILPESSOA,ENDPESSOA,NOMEPESSOA,SOBRENOMEPESSOA)	VALUES	(SCOPE_IDENTITY() ,@CGC,@TEL,@EMAIL,@ENDE,@NOME,@SNOME) ";
                 }
                 else
                 {
-                    sql += " INSERT INTO EMPRESA	(IDUSUARIO,CNPJEMPRESA,TELEMPRESA,ENDEMPRESA,EMAILEMPRESA,NFANTASIAEMPRESA,RAZAOEMPRESA) VALUES (SCOPE_IDENTITY() ,@CGC,@TEL,@EMAIL,@END,@NOME,@SNOME) ";
+                    sql += " INSERT INTO EMPRESA	(IDUSUARIO,CNPJEMPRESA,TELEMPRESA,ENDEMPRESA,EMAILEMPRESA,NFANTASIAEMPRESA,RAZAOEMPRESA) VALUES (SCOPE_IDENTITY() ,@CGC,@TEL,@EMAIL,@ENDE,@NOME,@SNOME) ";
                 }
                 using (SqlCommand cmd = new SqlCommand(sql, con))
                 {
                     cmd.CommandType = CommandType.Text;
                     cmd.Parameters.AddWithValue("@USER", cadusuario.UserUsuario);
                     cmd.Parameters.AddWithValue("@PASS", cadusuario.PassUsuario);
-                    cmd.Parameters.AddWithValue("@TIPO", cadusuario.TipoUsuario);
+                    cmd.Parameters.AddWithValue("@TIPO", tpuser);
                     cmd.Parameters.AddWithValue("@STATUS", cadusuario.StatusUsuario);
                     cmd.Parameters.AddWithValue("@CGC", cadusuario.CGCEP);
                     cmd.Parameters.AddWithValue("@NOME", cadusuario.NomeEP);
@@ -52,15 +52,26 @@ namespace WebApplicationAPI.Models.CadUsuario
             }
         }
 
-        public static int UpdateCadUsuario(CadUsuario cadusuario)
+        public static int UpdateCadUsuario(CadUsuario cadusuario,int tpuser)
         {
             int reg = 0;
             using (SqlConnection con = new SqlConnection(GetStringConexao()))
             {
-                string sql = "UPDATE PESSOA SET IDUSUARIO = @IDUSUARIO,  CPFPESSOA = @CPFPESSOA, NOMEPESSOA = @NOMEPESSOA, SOBRENOMEPESSOA = @SOBRENOMEPESSOA, EMAILPESSOA = @EMAILPESSOA, TELPESSOA = @TELPESSOA, ENDPESSOA = @ENDPESSOA";
+                string sql = " UPDATE USUARIO SET USUARIO.PASSUSUARIO = @PASS, USUARIO.STATUSUSUARIO = @STATUS WHERE USUARIO.IDUSUARIO = @ID;  ";
+
+                if (tpuser == 1)
+                {
+                    sql += " UPDATE EMPRESA SET EMPRESA.CNPJEMPRESA = @CGC, EMPRESA.NFANTASIAEMPRESA = @SNOME, EMPRESA.RAZAOEMPRESA = @NOME, EMPRESA.EMAILEMPRESA = @EMAIL, EMPRESA.ENDEMPRESA = @ENDE, EMPRESA.TELEMPRESA = @TEL WHERE EMPRESA.IDUSUARIO = @ID ";
+                }
+                else
+                {
+                    sql += " UPDATE PESSOA SET PESSOA.CPFPESSOA = @CGC, PESSOA.NOMEPESSOA = @NOME, PESSOA.SOBRENOMEPESSOA = @SNOME, PESSOA.EMAILPESSOA = @EMAIL, PESSOA.TELPESSOA = @TEL, PESSOA.ENDPESSOA = @ENDE WHERE PESSOA.IDUSUARIO = @ID  ";
+                }
+
                 using (SqlCommand cmd = new SqlCommand(sql, con))
                 {
                     cmd.CommandType = CommandType.Text;
+                    cmd.Parameters.AddWithValue("@ID", cadusuario.IdUsuario);
                     cmd.Parameters.AddWithValue("@PASS", cadusuario.PassUsuario);
                     cmd.Parameters.AddWithValue("@STATUS", cadusuario.StatusUsuario);
                     cmd.Parameters.AddWithValue("@CGC", cadusuario.CGCEP);
@@ -125,8 +136,8 @@ namespace WebApplicationAPI.Models.CadUsuario
                                 cadusuario.NomeEP = dr["NOME"].ToString();
                                 cadusuario.SnomeEP = dr["SNOME"].ToString();
                                 cadusuario.EmailEP = dr["EMAIL"].ToString();
-                                cadusuario.TelEP = dr["ENDE"].ToString();
-                                cadusuario.EndEP = dr["TEL"].ToString();
+                                cadusuario.TelEP = dr["TEL"].ToString();
+                                cadusuario.EndEP = dr["END"].ToString();
 
                                 _CadUsuario.Add(cadusuario);
                             }
@@ -143,7 +154,7 @@ namespace WebApplicationAPI.Models.CadUsuario
             using (SqlConnection con = new SqlConnection(GetStringConexao()))
             {
                 con.Open();
-                using (SqlCommand cmd = new SqlCommand(" SELECT USUARIO.IDUSUARIO AS ID,USUARIO.USERUSUARIO AS USR,CASE WHEN USUARIO.TIPOUSUARIO = 2 THEN PESSOA.NOMEPESSOA WHEN TIPOUSUARIO = 1 THEN EMPRESA.NFANTASIAEMPRESA ELSE 'administrador' END AS NOME,CASE WHEN USUARIO.TIPOUSUARIO = 2 THEN PESSOA.SOBRENOMEPESSOA WHEN TIPOUSUARIO = 1 THEN EMPRESA.RAZAOEMPRESA ELSE 'platpet' END AS SNOME,USUARIO.PASSUSUARIO AS PASS,USUARIO.TIPOUSUARIO AS TIPO,CASE WHEN USUARIO.TIPOUSUARIO = 1 THEN EMPRESA.EMAILEMPRESA WHEN USUARIO.TIPOUSUARIO = 2 THEN PESSOA.EMAILPESSOA ELSE 'UNIVERSE.SOFTWARE.2019@GMAIL.COM'	END EMAIL, STATUSUSUARIO AS STATUS,CASE WHEN USUARIO.TIPOUSUARIO = 2 THEN PESSOA.IDPESSOA WHEN TIPOUSUARIO = 1 THEN EMPRESA.IDEMPRESA ELSE 0 END AS IDEP,CASE WHEN USUARIO.TIPOUSUARIO = 2 THEN PESSOA.CPFPESSOA WHEN TIPOUSUARIO = 1 THEN EMPRESA.CNPJEMPRESA ELSE '' END AS CGC,CASE WHEN USUARIO.TIPOUSUARIO = 2 THEN PESSOA.TELPESSOA WHEN TIPOUSUARIO = 1 THEN EMPRESA.TELEMPRESA ELSE '' END AS TEL,CASE WHEN USUARIO.TIPOUSUARIO = 2 THEN PESSOA.ENDPESSOA WHEN TIPOUSUARIO = 1 THEN EMPRESA.ENDEMPRESA ELSE '' END AS ENDE FROM USUARIO LEFT JOIN PESSOA  ON USUARIO.IDUSUARIO = PESSOA.IDUSUARIO LEFT JOIN EMPRESA ON USUARIO.IDUSUARIO = EMPRESA.IDUSUARIO WHERE IDEMPRESA = @ID", con))
+                using (SqlCommand cmd = new SqlCommand(" SELECT USUARIO.IDUSUARIO AS ID,USUARIO.USERUSUARIO AS USR,CASE WHEN USUARIO.TIPOUSUARIO = 2 THEN PESSOA.NOMEPESSOA WHEN TIPOUSUARIO = 1 THEN EMPRESA.NFANTASIAEMPRESA ELSE 'administrador' END AS NOME,CASE WHEN USUARIO.TIPOUSUARIO = 2 THEN PESSOA.SOBRENOMEPESSOA WHEN TIPOUSUARIO = 1 THEN EMPRESA.RAZAOEMPRESA ELSE 'platpet' END AS SNOME,USUARIO.PASSUSUARIO AS PASS,USUARIO.TIPOUSUARIO AS TIPO,CASE WHEN USUARIO.TIPOUSUARIO = 1 THEN EMPRESA.EMAILEMPRESA WHEN USUARIO.TIPOUSUARIO = 2 THEN PESSOA.EMAILPESSOA ELSE 'UNIVERSE.SOFTWARE.2019@GMAIL.COM'	END EMAIL, STATUSUSUARIO AS STATUS,CASE WHEN USUARIO.TIPOUSUARIO = 2 THEN PESSOA.IDPESSOA WHEN TIPOUSUARIO = 1 THEN EMPRESA.IDEMPRESA ELSE 0 END AS IDEP,CASE WHEN USUARIO.TIPOUSUARIO = 2 THEN PESSOA.CPFPESSOA WHEN TIPOUSUARIO = 1 THEN EMPRESA.CNPJEMPRESA ELSE '' END AS CGC,CASE WHEN USUARIO.TIPOUSUARIO = 2 THEN PESSOA.TELPESSOA WHEN TIPOUSUARIO = 1 THEN EMPRESA.TELEMPRESA ELSE '' END AS TEL,CASE WHEN USUARIO.TIPOUSUARIO = 2 THEN PESSOA.ENDPESSOA WHEN TIPOUSUARIO = 1 THEN EMPRESA.ENDEMPRESA ELSE '' END AS ENDE FROM USUARIO LEFT JOIN PESSOA  ON USUARIO.IDUSUARIO = PESSOA.IDUSUARIO LEFT JOIN EMPRESA ON USUARIO.IDUSUARIO = EMPRESA.IDUSUARIO WHERE USUARIO.IDUSUARIO = @ID", con))
                 {
                     cmd.Parameters.AddWithValue("@ID", id);
 
@@ -164,8 +175,8 @@ namespace WebApplicationAPI.Models.CadUsuario
                                 cadusuario.NomeEP = dr["NOME"].ToString();
                                 cadusuario.SnomeEP = dr["SNOME"].ToString();
                                 cadusuario.EmailEP = dr["EMAIL"].ToString();
-                                cadusuario.TelEP = dr["ENDE"].ToString();
-                                cadusuario.EndEP = dr["TEL"].ToString();
+                                cadusuario.TelEP = dr["TEL"].ToString();
+                                cadusuario.EndEP = dr["ENDE"].ToString();
                             }
                         }
                         return cadusuario;

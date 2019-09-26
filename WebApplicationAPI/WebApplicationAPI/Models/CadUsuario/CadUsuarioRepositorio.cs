@@ -28,9 +28,9 @@ namespace WebApplicationAPI.Models.CadUsuario
             CadUsuarioDAL.InsertCadUsuario(item,tpuser);
         }
 
-        public void Update(CadUsuario item)
+        public void Update(CadUsuario item,int tpuser)
         {
-            CadUsuarioDAL.UpdateCadUsuario(item);
+            CadUsuarioDAL.UpdateCadUsuario(item,tpuser);
         }
 
     }

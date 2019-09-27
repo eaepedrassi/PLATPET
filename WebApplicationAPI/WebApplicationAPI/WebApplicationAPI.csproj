@@ -155,8 +155,11 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\CadUsuariosController.cs" />
     <Compile Include="Controllers\EmpresasController.cs" />
+    <Compile Include="Controllers\EspeciesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PessoasController.cs" />
+    <Compile Include="Controllers\PetsController.cs" />
+    <Compile Include="Controllers\SubEspeciesController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -279,10 +282,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\CadEspecie\" />
     <Folder Include="Views\CadUsuarios\" />
     <Folder Include="Views\Empresas\" />
+    <Folder Include="Views\Especies\" />
     <Folder Include="Views\Pessoas\" />
+    <Folder Include="Views\Pets\" />
+    <Folder Include="Views\SubEspecies\" />
     <Folder Include="Views\Usuarios\" />
   </ItemGroup>
   <ItemGroup>

@@ -168,6 +168,9 @@
     <Compile Include="Models\Empresa\Empresa.cs" />
     <Compile Include="Models\Empresa\EmpresaDAL.cs" />
     <Compile Include="Models\Empresa\EmpresaRepositorio.cs" />
+    <Compile Include="Models\Especie\Especie.cs" />
+    <Compile Include="Models\Especie\EspecieDAL.cs" />
+    <Compile Include="Models\Especie\EspecieRepositorio.cs" />
     <Compile Include="Models\IRepositorio.cs" />
     <Compile Include="Models\Pessoa\Pessoa.cs" />
     <Compile Include="Models\Pessoa\PessoaDAL.cs" />
@@ -175,6 +178,9 @@
     <Compile Include="Models\Pet\Pet.cs" />
     <Compile Include="Models\Pet\PetDAL.cs" />
     <Compile Include="Models\Pet\PetRepositorio.cs" />
+    <Compile Include="Models\SubEspecie\SubEspecie.cs" />
+    <Compile Include="Models\SubEspecie\SubEspecieDAL.cs" />
+    <Compile Include="Models\SubEspecie\SubEspecieRepositorio.cs" />
     <Compile Include="Models\Usuario\Usuario.cs" />
     <Compile Include="Models\Usuario\UsuarioDAL.cs" />
     <Compile Include="Models\Usuario\UsuarioRepositorio.cs" />
@@ -273,6 +279,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Models\CadEspecie\" />
     <Folder Include="Views\CadUsuarios\" />
     <Folder Include="Views\Empresas\" />
     <Folder Include="Views\Pessoas\" />

@@ -135,7 +135,7 @@ namespace WebApplicationAPI.Models.CadUsuario
                                 cadusuario.SnomeEP = dr["SNOME"].ToString();
                                 cadusuario.EmailEP = dr["EMAIL"].ToString();
                                 cadusuario.TelEP = dr["TEL"].ToString();
-                                cadusuario.EndEP = dr["END"].ToString();
+                                cadusuario.EndEP = dr["ENDE"].ToString();
 
                                 _CadUsuario.Add(cadusuario);
                             }

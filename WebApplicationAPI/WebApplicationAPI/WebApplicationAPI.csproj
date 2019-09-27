@@ -172,6 +172,9 @@
     <Compile Include="Models\Pessoa\Pessoa.cs" />
     <Compile Include="Models\Pessoa\PessoaDAL.cs" />
     <Compile Include="Models\Pessoa\PessoaRepositorio.cs" />
+    <Compile Include="Models\Pet\Pet.cs" />
+    <Compile Include="Models\Pet\PetDAL.cs" />
+    <Compile Include="Models\Pet\PetRepositorio.cs" />
     <Compile Include="Models\Usuario\Usuario.cs" />
     <Compile Include="Models\Usuario\UsuarioDAL.cs" />
     <Compile Include="Models\Usuario\UsuarioRepositorio.cs" />

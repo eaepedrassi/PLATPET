@@ -45,10 +45,11 @@ namespace WebApplicationAPI.Models.Pessoa
             int reg = 0;
             using (SqlConnection con = new SqlConnection(GetStringConexao()))
             {
-                string sql = "UPDATE PESSOA SET IDUSUARIO = @IDUSUARIO,  CPFPESSOA = @CPFPESSOA, NOMEPESSOA = @NOMEPESSOA, SOBRENOMEPESSOA = @SOBRENOMEPESSOA, EMAILPESSOA = @EMAILPESSOA, TELPESSOA = @TELPESSOA, ENDPESSOA = @ENDPESSOA";
+                string sql = "UPDATE PESSOA SET IDUSUARIO = @IDUSUARIO,  CPFPESSOA = @CPFPESSOA, NOMEPESSOA = @NOMEPESSOA, SOBRENOMEPESSOA = @SOBRENOMEPESSOA, EMAILPESSOA = @EMAILPESSOA, TELPESSOA = @TELPESSOA, ENDPESSOA = @ENDPESSOA WHERE IDPESSOA = @ID";
                 using (SqlCommand cmd = new SqlCommand(sql, con))
                 {
                     cmd.CommandType = CommandType.Text;
+                    cmd.Parameters.AddWithValue("@ID", pessoa.IdPessoa);
                     cmd.Parameters.AddWithValue("@IDUSUARIO", pessoa.IdUsuario);
                     cmd.Parameters.AddWithValue("@CPFPESSOA", pessoa.CPFPessoa);
                     cmd.Parameters.AddWithValue("@NOMEPESSOA", pessoa.NomePessoa);
@@ -69,11 +70,11 @@ namespace WebApplicationAPI.Models.Pessoa
             int reg = 0;
             using (SqlConnection con = new SqlConnection(GetStringConexao()))
             {
-                string sql = "DELETE FROM PESSOA WHERE IDPESSOA = @IDPESSOA";
+                string sql = "DELETE FROM PESSOA WHERE IDPESSOA = @ID";
                 using (SqlCommand cmd = new SqlCommand(sql, con))
                 {
                     cmd.CommandType = CommandType.Text;
-                    cmd.Parameters.AddWithValue("@IDPESSOA", id);
+                    cmd.Parameters.AddWithValue("@ID", id);
 
                     con.Open();
                     reg = cmd.ExecuteNonQuery();
@@ -126,9 +127,9 @@ namespace WebApplicationAPI.Models.Pessoa
             using (SqlConnection con = new SqlConnection(GetStringConexao()))
             {
                 con.Open();
-                using (SqlCommand cmd = new SqlCommand("SELECT IDEMPRESA, IDUSUARIO, CNPJEMPRESA, NFANTASIAEMPRESA, RAZAOEMPRESA, EMAILEMPRESA, TELEMPRESA, ENDEMPRESA FROM USUARIO WHERE IDEMPRESA = @IDEMPRESA", con))
+                using (SqlCommand cmd = new SqlCommand("SELECT IDPESSOA, IDUSUARIO, CPFPESSOA, NOMEPESSOA, SOBRENOMEPESSOA, EMAILPESSOA, TELPESSOA, ENDPESSOA FROM PESSOA WHERE IDPESSOA = @ID", con))
                 {
-                    cmd.Parameters.AddWithValue("@IDEMPRESA", id);
+                    cmd.Parameters.AddWithValue("@ID", id);
 
                     using (SqlDataReader dr = cmd.ExecuteReader())
                     {

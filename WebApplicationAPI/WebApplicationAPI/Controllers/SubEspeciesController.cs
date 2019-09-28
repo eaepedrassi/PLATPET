@@ -33,6 +33,11 @@ namespace WebApplicationAPI.Controllers
             return SubEspecie;
         }
 
+        public IEnumerable<SubEspecie> ListE(int id)
+        {
+            return _subespeciesRepositorio.GetByIdEspecies(id);
+        }
+
         // POST: api/Clientes   
         [HttpPost()]
         public void Post([FromBody]SubEspecie subespecie)

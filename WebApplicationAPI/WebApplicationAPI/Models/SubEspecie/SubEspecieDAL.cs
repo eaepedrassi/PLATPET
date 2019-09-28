@@ -21,11 +21,10 @@ namespace WebApplicationAPI.Models.SubEspecie
             int reg = 0;
             using (SqlConnection con = new SqlConnection(GetStringConexao()))
             {
-                string sql = "INSERT INTO EMPRESA (IDUSUARIO, CNPJEMPRESA, NFANTASIAEMPRESA, RAZAOEMPRESA, EMAILEMPRESA, TELEMPRESA, ENDEMPRESA) VALUES (@IDUSUARIO, @CNPJEMPRESA, @NFANTASIAEMPRESA, @RAZAOEMPRESA, @EMAILEMPRESA, @TELEMPRESA, @ENDEMPRESA)";
+                string sql = "INSERT INTO SUBESPECIE (IDESPECIE, NOMESUBESPECIE) VALUES (@IDESPECIE, @NOMESUBESPECIE)";
                 using (SqlCommand cmd = new SqlCommand(sql, con))
                 {
                     cmd.CommandType = CommandType.Text;
-                    cmd.Parameters.AddWithValue("@IDSUBESPECIE", subespecie.IdSubEspecie);
                     cmd.Parameters.AddWithValue("@IDESPECIE", subespecie.IdSubEspecie);
                     cmd.Parameters.AddWithValue("@NOME", subespecie.NomeSubEspecie);
 
@@ -42,11 +41,11 @@ namespace WebApplicationAPI.Models.SubEspecie
             int reg = 0;
             using (SqlConnection con = new SqlConnection(GetStringConexao()))
             {
-                string sql = "UPDATE EMPRESA SET IDUSUARIO = @IDUSUARIO, CNPJEMPRESA = @CNPJEMPRESA, NFANTASIAEMPRESA = @NFANTASIAEMPRESA, RAZAOEMPRESA = @RAZAOEMPRESA, EMAILEMPRESA = @EMAILEMPRESA, TELEMPRESA = @TELEMPRESA, ENDEMPRESA = @ENDEMPRESA";
+                string sql = "UPDATE ESPECIE SET IDESPECIE = @ESPECIE, NOMESUBESPECIE = @NOME ";
                 using (SqlCommand cmd = new SqlCommand(sql, con))
                 {
                     cmd.CommandType = CommandType.Text;
-                    cmd.Parameters.AddWithValue("@IDESPECIE", subespecie.IdEspecie);
+                    cmd.Parameters.AddWithValue("@ESPECIE", subespecie.IdEspecie);
                     cmd.Parameters.AddWithValue("@NOME", subespecie.NomeSubEspecie);
 
                     con.Open();
@@ -61,11 +60,11 @@ namespace WebApplicationAPI.Models.SubEspecie
             int reg = 0;
             using (SqlConnection con = new SqlConnection(GetStringConexao()))
             {
-                string sql = "DELETE FROM EMPRESA WHERE IDEMPRESA = @IDEMPRESA";
+                string sql = "DELETE FROM SUBESPECIE WHERE IDSUBESPECIE = @ID";
                 using (SqlCommand cmd = new SqlCommand(sql, con))
                 {
                     cmd.CommandType = CommandType.Text;
-                    cmd.Parameters.AddWithValue("@IDSUBESPECIE", id);
+                    cmd.Parameters.AddWithValue("@ID", id);
 
                     con.Open();
                     reg = cmd.ExecuteNonQuery();
@@ -83,7 +82,7 @@ namespace WebApplicationAPI.Models.SubEspecie
 
             {
                 con.Open();
-                using (SqlCommand cmd = new SqlCommand("SELECT IDEMPRESA, IDUSUARIO, CNPJEMPRESA, NFANTASIAEMPRESA, RAZAOEMPRESA, EMAILEMPRESA, TELEMPRESA, ENDEMPRESA FROM EMPRESA", con))
+                using (SqlCommand cmd = new SqlCommand("SELECT IDSUBESPECIE, IDESPECIE, NOMESUBESPECIE FROM SUBESPECIE", con))
                 {
                     using (SqlDataReader dr = cmd.ExecuteReader())
                     {
@@ -95,7 +94,7 @@ namespace WebApplicationAPI.Models.SubEspecie
 
                                 subespecie.IdSubEspecie = Convert.ToInt32(dr["IDSUBESPECIE"]);
                                 subespecie.IdEspecie = Convert.ToInt32(dr["IDESPECIE"]);
-                                subespecie.NomeSubEspecie = dr["NOME"].ToString();
+                                subespecie.NomeSubEspecie = dr["NOMESUBESPECIE"].ToString();
 
                                 _SubEspecie.Add(subespecie);
                             }
@@ -112,9 +111,9 @@ namespace WebApplicationAPI.Models.SubEspecie
             using (SqlConnection con = new SqlConnection(GetStringConexao()))
             {
                 con.Open();
-                using (SqlCommand cmd = new SqlCommand("SELECT IDEMPRESA, IDUSUARIO, CNPJEMPRESA, NFANTASIAEMPRESA, RAZAOEMPRESA, EMAILEMPRESA, TELEMPRESA, ENDEMPRESA FROM USUARIO WHERE IDEMPRESA = @IDEMPRESA", con))
+                using (SqlCommand cmd = new SqlCommand("SELECT IDSUBESPECIE, IDESPECIE, NOMESUBESPECIE FROM SUBESPECIE WHERE IDSUBESPECIE = @ID", con))
                 {
-                    cmd.Parameters.AddWithValue("@IDESPECIE", id);
+                    cmd.Parameters.AddWithValue("@ID", id);
 
                     using (SqlDataReader dr = cmd.ExecuteReader())
                     {
@@ -132,6 +131,39 @@ namespace WebApplicationAPI.Models.SubEspecie
                     }
                 }
             }
+        }
+
+        public static List<SubEspecie> GetSubEspecieEspecies(int id)
+        {
+            List<SubEspecie> _SubEspecie = new List<SubEspecie>();
+
+            using (SqlConnection con = new SqlConnection(GetStringConexao()))
+
+            {
+                con.Open();
+                using (SqlCommand cmd = new SqlCommand(" SELECT IDSUBESPECIE, IDESPECIE, NOMESUBESPECIE FROM SUBESPECIE WHERE IDESPECIES = @ID ", con))
+                {
+                    cmd.Parameters.AddWithValue("@ID", id);
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        if (dr != null)
+                        {
+                            while (dr.Read())
+                            {
+                                var subespecie = new SubEspecie();
+
+                                subespecie.IdSubEspecie = Convert.ToInt32(dr["IDSUBESPECIE"]);
+                                subespecie.IdEspecie = Convert.ToInt32(dr["IDESPECIE"]);
+                                subespecie.NomeSubEspecie = dr["NOMESUBESPECIE"].ToString();
+
+                                _SubEspecie.Add(subespecie);
+                            }
+                        }
+                        return _SubEspecie;
+                    }
+                }
+            }
+
         }
     }
 }

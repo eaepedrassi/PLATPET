@@ -32,6 +32,10 @@ namespace WebApplicationAPI.Models.SubEspecie
         {
             SubEspecieDAL.UpdateSubEspecie(item);
         }
+        public IEnumerable<SubEspecie> GetByIdEspecies(int id)
+        {
+            return SubEspecieDAL.GetSubEspecieEspecies(id);
+        }
 
     }
 }

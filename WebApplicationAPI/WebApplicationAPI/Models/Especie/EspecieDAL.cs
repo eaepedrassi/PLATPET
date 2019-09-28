@@ -21,11 +21,11 @@ namespace WebApplicationAPI.Models.Especie
             int reg = 0;
             using (SqlConnection con = new SqlConnection(GetStringConexao()))
             {
-                string sql = "INSERT INTO EMPRESA (IDUSUARIO, CNPJEMPRESA, NFANTASIAEMPRESA, RAZAOEMPRESA, EMAILEMPRESA, TELEMPRESA, ENDEMPRESA) VALUES (@IDUSUARIO, @CNPJEMPRESA, @NFANTASIAEMPRESA, @RAZAOEMPRESA, @EMAILEMPRESA, @TELEMPRESA, @ENDEMPRESA)";
+                string sql = " INSERT INTO ESPECIE (IDESPECIE,NOMEESPECIE) VALUES (@ID,@NOME) ";
                 using (SqlCommand cmd = new SqlCommand(sql, con))
                 {
                     cmd.CommandType = CommandType.Text;
-                    cmd.Parameters.AddWithValue("@IDESPECIE", especie.IdEspecie);
+                    cmd.Parameters.AddWithValue("@ID", especie.IdEspecie);
                     cmd.Parameters.AddWithValue("@NOME", especie.NomeEspecie);
 
                     con.Open();
@@ -41,10 +41,11 @@ namespace WebApplicationAPI.Models.Especie
             int reg = 0;
             using (SqlConnection con = new SqlConnection(GetStringConexao()))
             {
-                string sql = "UPDATE EMPRESA SET IDUSUARIO = @IDUSUARIO, CNPJEMPRESA = @CNPJEMPRESA, NFANTASIAEMPRESA = @NFANTASIAEMPRESA, RAZAOEMPRESA = @RAZAOEMPRESA, EMAILEMPRESA = @EMAILEMPRESA, TELEMPRESA = @TELEMPRESA, ENDEMPRESA = @ENDEMPRESA";
+                string sql = " UPDATE ESPECIE SET NOMEESPECIE = @NOME WHERE IDESPECIE = @ID ";
                 using (SqlCommand cmd = new SqlCommand(sql, con))
                 {
                     cmd.CommandType = CommandType.Text;
+                    cmd.Parameters.AddWithValue("@ID", especie.IdEspecie);
                     cmd.Parameters.AddWithValue("@NOME", especie.NomeEspecie);
 
                     con.Open();
@@ -59,11 +60,11 @@ namespace WebApplicationAPI.Models.Especie
             int reg = 0;
             using (SqlConnection con = new SqlConnection(GetStringConexao()))
             {
-                string sql = "DELETE FROM EMPRESA WHERE IDEMPRESA = @IDEMPRESA";
+                string sql = "DELETE FROM ESPECIE WHERE IDESPECIE = @ID";
                 using (SqlCommand cmd = new SqlCommand(sql, con))
                 {
                     cmd.CommandType = CommandType.Text;
-                    cmd.Parameters.AddWithValue("@IDESPECIE", id);
+                    cmd.Parameters.AddWithValue("@ID", id);
 
                     con.Open();
                     reg = cmd.ExecuteNonQuery();
@@ -81,7 +82,7 @@ namespace WebApplicationAPI.Models.Especie
 
             {
                 con.Open();
-                using (SqlCommand cmd = new SqlCommand("SELECT IDEMPRESA, IDUSUARIO, CNPJEMPRESA, NFANTASIAEMPRESA, RAZAOEMPRESA, EMAILEMPRESA, TELEMPRESA, ENDEMPRESA FROM EMPRESA", con))
+                using (SqlCommand cmd = new SqlCommand(" SELECT IDESPECIE, NOMEESPECIE FROM ESPECIE ", con))
                 {
                     using (SqlDataReader dr = cmd.ExecuteReader())
                     {
@@ -92,7 +93,7 @@ namespace WebApplicationAPI.Models.Especie
                                 var especie = new Especie();
 
                                 especie.IdEspecie = Convert.ToInt32(dr["IDESPECIE"]);
-                                especie.NomeEspecie = dr["NOME"].ToString();
+                                especie.NomeEspecie = dr["NOMEESPECIE"].ToString();
 
                                 _Especie.Add(especie);
                             }
@@ -109,9 +110,9 @@ namespace WebApplicationAPI.Models.Especie
             using (SqlConnection con = new SqlConnection(GetStringConexao()))
             {
                 con.Open();
-                using (SqlCommand cmd = new SqlCommand("SELECT IDEMPRESA, IDUSUARIO, CNPJEMPRESA, NFANTASIAEMPRESA, RAZAOEMPRESA, EMAILEMPRESA, TELEMPRESA, ENDEMPRESA FROM USUARIO WHERE IDEMPRESA = @IDEMPRESA", con))
+                using (SqlCommand cmd = new SqlCommand("SELECT IDESPECIE, NOMEESPECIE FROM ESPECIE WHERE IDESPECIE = @ID ", con))
                 {
-                    cmd.Parameters.AddWithValue("@IDESPECIE", id);
+                    cmd.Parameters.AddWithValue("@ID", id);
 
                     using (SqlDataReader dr = cmd.ExecuteReader())
                     {
@@ -121,7 +122,7 @@ namespace WebApplicationAPI.Models.Especie
                             {
                                 especie = new Especie();
                                 especie.IdEspecie = Convert.ToInt32(dr["IDESPECIE"]);
-                                especie.NomeEspecie = dr["NOME"].ToString();
+                                especie.NomeEspecie = dr["NOMEESPECIE"].ToString();
                             }
                         }
                         return especie;

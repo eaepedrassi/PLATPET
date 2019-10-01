@@ -22,7 +22,7 @@ namespace WebApplicationAPI.Models.Pet
             int reg = 0;
             using (SqlConnection con = new SqlConnection(GetStringConexao()))
             {
-                string sql = "INSERT INTO EMPRESA (IDUSUARIO, CNPJEMPRESA, NFANTASIAEMPRESA, RAZAOEMPRESA, EMAILEMPRESA, TELEMPRESA, ENDEMPRESA) VALUES (@IDUSUARIO, @CNPJEMPRESA, @NFANTASIAEMPRESA, @RAZAOEMPRESA, @EMAILEMPRESA, @TELEMPRESA, @ENDEMPRESA)";
+                string sql = "INSERT INTO PET (IDPET, IDPESSOA, IDSUBESPECIE, RGPET, OBSPET, NOMEPET) VALUES (@IDPET, @IDPESSOA, @IDSUBE, @RGPET, @OBS, @NOME)";
                 using (SqlCommand cmd = new SqlCommand(sql, con))
                 {
                     cmd.CommandType = CommandType.Text;
@@ -46,11 +46,12 @@ namespace WebApplicationAPI.Models.Pet
             int reg = 0;
             using (SqlConnection con = new SqlConnection(GetStringConexao()))
             {
-                string sql = "UPDATE EMPRESA SET IDUSUARIO = @IDUSUARIO, CNPJEMPRESA = @CNPJEMPRESA, NFANTASIAEMPRESA = @NFANTASIAEMPRESA, RAZAOEMPRESA = @RAZAOEMPRESA, EMAILEMPRESA = @EMAILEMPRESA, TELEMPRESA = @TELEMPRESA, ENDEMPRESA = @ENDEMPRESA";
+                string sql = "UPDATE PET SET IDPESSOA = @PESSOA, IDSUBESPECIE = @SUBE, RGPET = @RGPET, OBSPET = @OBS, NOMEPET = @NOME ";
                 using (SqlCommand cmd = new SqlCommand(sql, con))
                 {
                     cmd.CommandType = CommandType.Text;
-                    cmd.Parameters.AddWithValue("@IDSUBE", pet.IdSubespecie);
+                    cmd.Parameters.AddWithValue("@PESSOA", pet.IdPessoa);
+                    cmd.Parameters.AddWithValue("@SUBE", pet.IdSubespecie);
                     cmd.Parameters.AddWithValue("@RGPET", pet.RGPet);
                     cmd.Parameters.AddWithValue("@NOME", pet.NomePet);
                     cmd.Parameters.AddWithValue("@OBS", pet.ObsPet);
@@ -67,11 +68,11 @@ namespace WebApplicationAPI.Models.Pet
             int reg = 0;
             using (SqlConnection con = new SqlConnection(GetStringConexao()))
             {
-                string sql = "DELETE FROM EMPRESA WHERE IDEMPRESA = @IDEMPRESA";
+                string sql = "DELETE FROM PET WHERE IDPET = @ID";
                 using (SqlCommand cmd = new SqlCommand(sql, con))
                 {
                     cmd.CommandType = CommandType.Text;
-                    cmd.Parameters.AddWithValue("@IDPET", id);
+                    cmd.Parameters.AddWithValue("@ID", id);
 
                     con.Open();
                     reg = cmd.ExecuteNonQuery();
@@ -89,7 +90,7 @@ namespace WebApplicationAPI.Models.Pet
 
             {
                 con.Open();
-                using (SqlCommand cmd = new SqlCommand("SELECT IDEMPRESA, IDUSUARIO, CNPJEMPRESA, NFANTASIAEMPRESA, RAZAOEMPRESA, EMAILEMPRESA, TELEMPRESA, ENDEMPRESA FROM EMPRESA", con))
+                using (SqlCommand cmd = new SqlCommand("SELECT IDPET, IDPESSOA, IDSUBESPECIE, RGPET, OBSPET, NOMEPET FROM PET", con))
                 {
                     using (SqlDataReader dr = cmd.ExecuteReader())
                     {
@@ -121,9 +122,9 @@ namespace WebApplicationAPI.Models.Pet
             using (SqlConnection con = new SqlConnection(GetStringConexao()))
             {
                 con.Open();
-                using (SqlCommand cmd = new SqlCommand("SELECT IDEMPRESA, IDUSUARIO, CNPJEMPRESA, NFANTASIAEMPRESA, RAZAOEMPRESA, EMAILEMPRESA, TELEMPRESA, ENDEMPRESA FROM USUARIO WHERE IDEMPRESA = @IDEMPRESA", con))
+                using (SqlCommand cmd = new SqlCommand("SELECT IDPET, IDPESSOA, IDSUBESPECIE, RGPET, OBSPET, NOMEPET FROM PET WHERE IDEMPRESA = @ID", con))
                 {
-                    cmd.Parameters.AddWithValue("@IDEMPRESA", id);
+                    cmd.Parameters.AddWithValue("@ID", id);
 
                     using (SqlDataReader dr = cmd.ExecuteReader())
                     {
@@ -154,7 +155,7 @@ namespace WebApplicationAPI.Models.Pet
 
             {
                 con.Open();
-                using (SqlCommand cmd = new SqlCommand("SELECT IDPET, IDSUBESPECIE, A, NFANTASIAEMPRESA, RAZAOEMPRESA, EMAILEMPRESA, TELEMPRESA, ENDEMPRESA FROM EMPRESA WHERE IDPESSOA = @ID", con))
+                using (SqlCommand cmd = new SqlCommand("SELECT IDPET, IDPESSOA, IDESPECIE, IDSUBESPECIE, RGPET, OBSPET, NOMEPET FROM PET WHERE IDPESSOA = @ID", con))
                 {
                     cmd.Parameters.AddWithValue("@ID", id);
                     using (SqlDataReader dr = cmd.ExecuteReader())

@@ -33,5 +33,10 @@ namespace WebApplicationAPI.Models.Pet
             PetDAL.UpdatePet(item);
         }
 
+        public IEnumerable<Pet> GetAllPets(int id)
+        {
+            return PetDAL.GetPetsPessoa(id);
+        }
+
     }
 }

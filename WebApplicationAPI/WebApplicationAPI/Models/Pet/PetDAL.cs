@@ -13,7 +13,8 @@ namespace WebApplicationAPI.Models.Pet
 
         protected static string GetStringConexao()
         {
-            return ConfigurationManager.ConnectionStrings["CONEXAOPLATPET"].ConnectionString;
+            //return ConfigurationManager.ConnectionStrings["CONEXAOPLATPET"].ConnectionString;
+            return ConfigurationManager.ConnectionStrings["PLATPET"].ConnectionString;
         }
 
         public static int InsertPet(Pet pet)
@@ -144,5 +145,41 @@ namespace WebApplicationAPI.Models.Pet
                 }
             }
         }
+
+        public static List<Pet> GetPetsPessoa(int id)
+        {
+            List<Pet> _Pet = new List<Pet>();
+
+            using (SqlConnection con = new SqlConnection(GetStringConexao()))
+
+            {
+                con.Open();
+                using (SqlCommand cmd = new SqlCommand("SELECT IDPET, IDSUBESPECIE, A, NFANTASIAEMPRESA, RAZAOEMPRESA, EMAILEMPRESA, TELEMPRESA, ENDEMPRESA FROM EMPRESA WHERE IDPESSOA = @ID", con))
+                {
+                    cmd.Parameters.AddWithValue("@ID", id);
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        if (dr != null)
+                        {
+                            while (dr.Read())
+                            {
+                                var pet = new Pet();
+
+                                pet.IdPet = Convert.ToInt32(dr["IDPET"]);
+                                pet.IdSubespecie = Convert.ToInt32(dr["IDSUBE"]);
+                                pet.IdPessoa = Convert.ToInt32(dr["IDPESSOA"]);
+                                pet.RGPet = dr["RGPET"].ToString();
+                                pet.NomePet = dr["NOME"].ToString();
+                                pet.ObsPet = dr["OBS"].ToString();
+
+                                _Pet.Add(pet);
+                            }
+                        }
+                        return _Pet;
+                    }
+                }
+            }
+        }
+
     }
 }

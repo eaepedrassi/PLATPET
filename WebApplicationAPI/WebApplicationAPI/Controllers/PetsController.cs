@@ -32,6 +32,12 @@ namespace WebApplicationAPI.Controllers
 
             return Pet;
         }
+        [Route("api/PetsPessoa/{id}")]
+        [HttpGet]
+        public IEnumerable<Pet> List(int id)
+        {
+            return _petsRepositorio.GetAllPets(id);
+        }
 
         // POST: api/Clientes   
         [HttpPost()]

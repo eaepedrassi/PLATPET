@@ -32,7 +32,8 @@ namespace WebApplicationAPI.Controllers
 
             return SubEspecie;
         }
-
+        [Route("SubEsp/Especie/{id}")]
+        [HttpGet]
         public IEnumerable<SubEspecie> ListE(int id)
         {
             return _subespeciesRepositorio.GetByIdEspecies(id);

@@ -30,6 +30,7 @@ namespace WebApplicationAPI.Controllers
         }
 
         // POST: api/Clientes   
+        [Route("api/CadUsuarios/{tpuser}")]
         [HttpPost()]
         public void Post([FromBody]CadUsuario cadusuario,int tpuser)
         {
@@ -37,6 +38,7 @@ namespace WebApplicationAPI.Controllers
         }
 
         // PUT: api/Clientes/5
+        [Route("api/CadUsuarios/{tpuser}")]
         [HttpPut()]
         public void Put([FromBody]CadUsuario cadusuario,int tpuser)
         {

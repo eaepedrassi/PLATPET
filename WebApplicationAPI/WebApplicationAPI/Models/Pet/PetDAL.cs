@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
 
 namespace WebApplicationAPI.Models.Pet
 {
@@ -13,8 +11,8 @@ namespace WebApplicationAPI.Models.Pet
 
         protected static string GetStringConexao()
         {
-            //return ConfigurationManager.ConnectionStrings["CONEXAOPLATPET"].ConnectionString;
-            return ConfigurationManager.ConnectionStrings["PLATPET"].ConnectionString;
+            return ConfigurationManager.ConnectionStrings["CONEXAOPLATPET"].ConnectionString;
+            //return ConfigurationManager.ConnectionStrings["PLATPET"].ConnectionString;
         }
 
         public static int InsertPet(Pet pet)
@@ -101,11 +99,11 @@ namespace WebApplicationAPI.Models.Pet
                                 var pet = new Pet();
 
                                 pet.IdPet = Convert.ToInt32(dr["IDPET"]);
-                                pet.IdSubespecie = Convert.ToInt32(dr["IDSUBE"]);
+                                pet.IdSubespecie = Convert.ToInt32(dr["IDSUBESPECIE"]);
                                 pet.IdPessoa = Convert.ToInt32(dr["IDPESSOA"]);
                                 pet.RGPet = dr["RGPET"].ToString();
-                                pet.NomePet = dr["NOME"].ToString();
-                                pet.ObsPet = dr["OBS"].ToString();
+                                pet.NomePet = dr["NOMEPET"].ToString();
+                                pet.ObsPet = dr["OBSPET"].ToString();
 
                                 _Pet.Add(pet);
                             }
@@ -122,7 +120,7 @@ namespace WebApplicationAPI.Models.Pet
             using (SqlConnection con = new SqlConnection(GetStringConexao()))
             {
                 con.Open();
-                using (SqlCommand cmd = new SqlCommand("SELECT IDPET, IDPESSOA, IDSUBESPECIE, RGPET, OBSPET, NOMEPET FROM PET WHERE IDEMPRESA = @ID", con))
+                using (SqlCommand cmd = new SqlCommand("SELECT IDPET, IDPESSOA, IDSUBESPECIE, RGPET, OBSPET, NOMEPET FROM PET WHERE IDPET = @ID", con))
                 {
                     cmd.Parameters.AddWithValue("@ID", id);
 
@@ -134,11 +132,11 @@ namespace WebApplicationAPI.Models.Pet
                             {
                                 pet = new Pet();
                                 pet.IdPet = Convert.ToInt32(dr["IDPET"]);
-                                pet.IdSubespecie = Convert.ToInt32(dr["IDSUBE"]);
+                                pet.IdSubespecie = Convert.ToInt32(dr["IDSUBESPECIE"]);
                                 pet.IdPessoa = Convert.ToInt32(dr["IDPESSOA"]);
                                 pet.RGPet = dr["RGPET"].ToString();
-                                pet.NomePet = dr["NOME"].ToString();
-                                pet.ObsPet = dr["OBS"].ToString();
+                                pet.NomePet = dr["NOMEPET"].ToString();
+                                pet.ObsPet = dr["OBSPET"].ToString();
                             }
                         }
                         return pet;
@@ -167,11 +165,11 @@ namespace WebApplicationAPI.Models.Pet
                                 var pet = new Pet();
 
                                 pet.IdPet = Convert.ToInt32(dr["IDPET"]);
-                                pet.IdSubespecie = Convert.ToInt32(dr["IDSUBE"]);
+                                pet.IdSubespecie = Convert.ToInt32(dr["IDSUBESPECIE"]);
                                 pet.IdPessoa = Convert.ToInt32(dr["IDPESSOA"]);
                                 pet.RGPet = dr["RGPET"].ToString();
-                                pet.NomePet = dr["NOME"].ToString();
-                                pet.ObsPet = dr["OBS"].ToString();
+                                pet.NomePet = dr["NOMEPET"].ToString();
+                                pet.ObsPet = dr["OBSPET"].ToString();
 
                                 _Pet.Add(pet);
                             }

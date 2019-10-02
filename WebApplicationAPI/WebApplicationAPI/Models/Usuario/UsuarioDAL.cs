@@ -21,7 +21,7 @@ namespace WebApplicationAPI.Models
             int reg = 0;
             using (SqlConnection con = new SqlConnection(GetStringConexao()))
             {
-                string sql = "INSERT INTO USUARIO (USERUSUARIO, PASSUSUARIO, TIPOUSUARIO, STATUSUSUARIO) VALUES (@USERUSUARIO, @PASSUSUARIO, @TIPOUSUARIO, @STATUSUSUARIO)";
+                string sql = "INSERT INTO USUARIO (USERUSUARIO, PASSUSUARIO, TIPOUSUARIO, STATUSUSUARIO) VALUES (@USERUSUARIO, HASHBYTES('MD5',@PASSUSUARIO), @TIPOUSUARIO, @STATUSUSUARIO)";
                 using (SqlCommand cmd = new SqlCommand(sql, con))
                 {
                     cmd.CommandType = CommandType.Text;
@@ -43,7 +43,7 @@ namespace WebApplicationAPI.Models
             int reg = 0;
             using (SqlConnection con = new SqlConnection(GetStringConexao()))
             {
-                string sql = "UPDATE USUARIO SET USERUSUARIO = @USERUSUARIO, PASSUSUARIO = @PASSUSUARIO, TIPOUSUARIO = @TIPOUSUARIO, STATUSUSUARIO = @STATUSUSUARIO  WHERE IDUSUARIO = @ID ";
+                string sql = "UPDATE USUARIO SET USERUSUARIO = @USERUSUARIO, PASSUSUARIO = HASHBYTES('MD5',@PASSUSUARIO), TIPOUSUARIO = @TIPOUSUARIO, STATUSUSUARIO = @STATUSUSUARIO  WHERE IDUSUARIO = @ID ";
                 using (SqlCommand cmd = new SqlCommand(sql, con))
                 {
                     cmd.CommandType = CommandType.Text;
@@ -87,7 +87,7 @@ namespace WebApplicationAPI.Models
 
             {
                 con.Open();
-                using (SqlCommand cmd = new SqlCommand("SELECT IDUSUARIO, USERUSUARIO, PASSUSUARIO, TIPOUSUARIO, STATUSUSUARIO FROM USUARIO", con))
+                using (SqlCommand cmd = new SqlCommand("SELECT IDUSUARIO, USERUSUARIO, UPPER(SUBSTRING(sys.fn_sqlvarbasetostr(HASHBYTES('MD5', PASSUSUARIO)),3,32)) AS PASSUSUARIO, TIPOUSUARIO, STATUSUSUARIO FROM USUARIO", con))
                 {
                     using (SqlDataReader dr = cmd.ExecuteReader())
                     {
@@ -118,7 +118,7 @@ namespace WebApplicationAPI.Models
             using (SqlConnection con = new SqlConnection(GetStringConexao()))
             {
                 con.Open();
-                using (SqlCommand cmd = new SqlCommand("SELECT IDUSUARIO, USERUSUARIO, PASSUSUARIO, TIPOUSUARIO, STATUSUSUARIO FROM USUARIO WHERE IDUSUARIO = @ID", con))
+                using (SqlCommand cmd = new SqlCommand("SELECT IDUSUARIO, USERUSUARIO, UPPER(SUBSTRING(sys.fn_sqlvarbasetostr(HASHBYTES('MD5', PASSUSUARIO)),3,32)) AS PASSUSUARIO, TIPOUSUARIO, STATUSUSUARIO FROM USUARIO WHERE IDUSUARIO = @ID", con))
                 {
                     cmd.Parameters.AddWithValue("@ID", id);
 

@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Configuration;
 using System.Data;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace WebSite.Business
 {
@@ -37,7 +38,7 @@ namespace WebSite.Business
         {
             Entities.Usuarios[] usuarios = ListaUsuarios(new Entities.Usuarios(Login));
             Entities.Usuarios usuario = usuarios.FirstOrDefault();
-            
+
             bool existe = usuario != null && usuario.IdUsuario > 0;
 
             return existe;
@@ -153,7 +154,7 @@ namespace WebSite.Business
         {
             return SalvaUsuario(new Entities.Usuarios(Id, Nome, Email, Login, Senha, Ativo));
         }
-        
+
         public bool ExcluiUsuario(Entities.Usuarios usuario)
         {
             bool salvou = false;

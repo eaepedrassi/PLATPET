@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Configuration;
 using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace WebSite.Business
 {
@@ -88,7 +90,7 @@ namespace WebSite.Business
                     sqlString.AppendLine("UPDATE PAGINAS SET");
                     sqlString.AppendLine("TITULO_PAGINA = '" + pagina.Titulo.Replace("'", "''") + "',");
                     sqlString.AppendLine("TEXTO_PAGINA = '" + pagina.Texto.Replace("'", "''") + "',");
-                    sqlString.AppendLine("ATIVO_PAGINA = " + (pagina.Ativo ? 1 : 0)  + " ");
+                    sqlString.AppendLine("ATIVO_PAGINA = " + (pagina.Ativo ? 1 : 0) + " ");
                     sqlString.AppendLine("WHERE ID_PAGINA = " + pagina.Id + "");
                 }
                 else

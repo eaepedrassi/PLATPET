@@ -1,9 +1,6 @@
-﻿using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.Owin.Security;
-using System.Web;
+﻿using System.Web;
 using System;
-using WebSite;
+using Microsoft.AspNetCore.Identity;
 
 namespace WebSite
 {

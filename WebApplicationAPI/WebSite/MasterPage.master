@@ -1,0 +1,33 @@
+﻿
+<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<title></title>
+<style type="text/css">
+@import url('css/default.css');
+</style>
+</head>
+<body>
+<form id="form1" runat="server">
+<div id="geral">
+<div id="cabecalho">
+<h1 id="logo">PLATPET - A plataforma do seu PET</h1>
+</div>
+<div id="menu">
+
+</div>
+<div id="conteudo">
+<asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+
+</asp:ContentPlaceHolder>
+</div>
+<div id="rodape">
+&amp;amp;amp;amp;copy; 2019. Universe Software by <a href="http://universesoftware2019.somee.com" target="_blank"></a>
+</div>
+</div>
+</form>
+</body>
+</html>

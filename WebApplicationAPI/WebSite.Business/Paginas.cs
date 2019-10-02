@@ -25,25 +25,25 @@ namespace WebSite.Business
             connection.AbrirConexao();
 
             StringBuilder sqlString = new StringBuilder();
-            sqlString.AppendLine("select * from paginas");
+            sqlString.AppendLine("SELECT * FROM PAGINAS");
 
             if (pagina != null)
             {
-                sqlString.AppendLine("where 1 = 1");
+                sqlString.AppendLine("WHERE 1 = 1");
 
                 if (pagina.Id > 0)
                 {
-                    sqlString.AppendLine("and id_pagina = " + pagina.Id + "");
+                    sqlString.AppendLine("AND ID_PAGINA = " + pagina.Id + "");
                 }
 
                 if (!string.IsNullOrEmpty(pagina.Titulo) && pagina.Titulo.Length > 0)
                 {
-                    sqlString.AppendLine("and titulo_pagina like '" + pagina.Titulo.Replace("'", "''") + "'");
+                    sqlString.AppendLine("AND TITULO_PAGINA LIKE '" + pagina.Titulo.Replace("'", "''") + "'");
                 }
 
                 if (!string.IsNullOrEmpty(pagina.Texto) && pagina.Texto.Length > 0)
                 {
-                    sqlString.AppendLine("and texto_pagina like '" + pagina.Texto + "'");
+                    sqlString.AppendLine("AND TEXTO_PAGINA LIKE '" + pagina.Texto + "'");
                 }
             }
 
@@ -85,16 +85,16 @@ namespace WebSite.Business
 
                 if (pagina.Id > 0)
                 {
-                    sqlString.AppendLine("update paginas set");
-                    sqlString.AppendLine("titulo_pagina = '" + pagina.Titulo.Replace("'", "''") + "',");
-                    sqlString.AppendLine("texto_pagina = '" + pagina.Texto.Replace("'", "''") + "',");
-                    sqlString.AppendLine("ativo_pagina = " + (pagina.Ativo ? 1 : 0)  + " ");
-                    sqlString.AppendLine("where id_pagina = " + pagina.Id + "");
+                    sqlString.AppendLine("UPDATE PAGINAS SET");
+                    sqlString.AppendLine("TITULO_PAGINA = '" + pagina.Titulo.Replace("'", "''") + "',");
+                    sqlString.AppendLine("TEXTO_PAGINA = '" + pagina.Texto.Replace("'", "''") + "',");
+                    sqlString.AppendLine("ATIVO_PAGINA = " + (pagina.Ativo ? 1 : 0)  + " ");
+                    sqlString.AppendLine("WHERE ID_PAGINA = " + pagina.Id + "");
                 }
                 else
                 {
-                    sqlString.AppendLine("insert into paginas(titulo_pagina, texto_pagina, datacriacao_pagina, ativo_pagina)");
-                    sqlString.AppendLine("values('" + pagina.Titulo.Replace("'", "''") + "', '" + pagina.Texto.Replace("'", "''") + "', GETDATE(), " + (pagina.Ativo ? 1 : 0) + ")");
+                    sqlString.AppendLine("INSERT INTO PAGINAS(TITULO_PAGINA, TEXTO_PAGINA, DATACRIACAO_PAGINA, ATIVO_PAGINA)");
+                    sqlString.AppendLine("VALUES('" + pagina.Titulo.Replace("'", "''") + "', '" + pagina.Texto.Replace("'", "''") + "', GETDATE(), " + (pagina.Ativo ? 1 : 0) + ")");
                 }
 
                 int i = connection.ExecutaComando(sqlString.ToString());
@@ -121,8 +121,8 @@ namespace WebSite.Business
                 connection.AbrirConexao();
 
                 StringBuilder sqlString = new StringBuilder();
-                sqlString.AppendLine("delete from paginas");
-                sqlString.AppendLine("where id_pagina = " + pagina.Id + "");
+                sqlString.AppendLine("DELETE FROM PAGINAS");
+                sqlString.AppendLine("WHERE ID_PAGINA = " + pagina.Id + "");
 
                 int i = connection.ExecutaComando(sqlString.ToString());
 

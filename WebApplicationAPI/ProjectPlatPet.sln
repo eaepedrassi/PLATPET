@@ -1,32 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29326.143
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.852
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplicationAPI", "WebApplicationAPI\WebApplicationAPI.csproj", "{B068B29F-47AC-4BDA-975D-2658434F4738}"
-EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "WebSite", "WebSite\", "{08354612-A13B-4D2F-B58F-9C7E81895931}"
-	ProjectSection(WebsiteProperties) = preProject
-		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.6.1"
-		ProjectReferences = "{6c89944a-a063-4b98-b844-523c3c19d49f}|WebSite.Business.dll;{bc4897c0-9ee3-407a-b15f-e27dfab9b36b}|WebSite.Data.dll;{12d71589-88c9-4468-a9a6-6355eb95b2d3}|WebSite.Entities.dll;{b068b29f-47ac-4bda-975d-2658434f4738}|WebApplicationAPI.dll;"
-		Debug.AspNetCompiler.VirtualPath = "/localhost_51352"
-		Debug.AspNetCompiler.PhysicalPath = "WebSite\"
-		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_51352\"
-		Debug.AspNetCompiler.Updateable = "true"
-		Debug.AspNetCompiler.ForceOverwrite = "true"
-		Debug.AspNetCompiler.FixedNames = "false"
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.VirtualPath = "/localhost_51352"
-		Release.AspNetCompiler.PhysicalPath = "WebSite\"
-		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_51352\"
-		Release.AspNetCompiler.Updateable = "true"
-		Release.AspNetCompiler.ForceOverwrite = "true"
-		Release.AspNetCompiler.FixedNames = "false"
-		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "51352"
-		SlnRelativePath = "WebSite\"
-		DefaultWebSiteLanguage = "Visual C#"
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebSite.Data", "WebSite.Data\WebSite.Data.csproj", "{38B340F8-6992-4A6B-B704-27495F6E21AC}"
 EndProject
@@ -68,26 +45,6 @@ Global
 		{B068B29F-47AC-4BDA-975D-2658434F4738}.Release|x64.Build.0 = Release|Any CPU
 		{B068B29F-47AC-4BDA-975D-2658434F4738}.Release|x86.ActiveCfg = Release|Any CPU
 		{B068B29F-47AC-4BDA-975D-2658434F4738}.Release|x86.Build.0 = Release|Any CPU
-		{08354612-A13B-4D2F-B58F-9C7E81895931}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{08354612-A13B-4D2F-B58F-9C7E81895931}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{08354612-A13B-4D2F-B58F-9C7E81895931}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{08354612-A13B-4D2F-B58F-9C7E81895931}.Debug|ARM.Build.0 = Debug|Any CPU
-		{08354612-A13B-4D2F-B58F-9C7E81895931}.Debug|ARM64.ActiveCfg = Debug|Any CPU
-		{08354612-A13B-4D2F-B58F-9C7E81895931}.Debug|ARM64.Build.0 = Debug|Any CPU
-		{08354612-A13B-4D2F-B58F-9C7E81895931}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{08354612-A13B-4D2F-B58F-9C7E81895931}.Debug|x64.Build.0 = Debug|Any CPU
-		{08354612-A13B-4D2F-B58F-9C7E81895931}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{08354612-A13B-4D2F-B58F-9C7E81895931}.Debug|x86.Build.0 = Debug|Any CPU
-		{08354612-A13B-4D2F-B58F-9C7E81895931}.Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{08354612-A13B-4D2F-B58F-9C7E81895931}.Release|Any CPU.Build.0 = Debug|Any CPU
-		{08354612-A13B-4D2F-B58F-9C7E81895931}.Release|ARM.ActiveCfg = Debug|Any CPU
-		{08354612-A13B-4D2F-B58F-9C7E81895931}.Release|ARM.Build.0 = Debug|Any CPU
-		{08354612-A13B-4D2F-B58F-9C7E81895931}.Release|ARM64.ActiveCfg = Debug|Any CPU
-		{08354612-A13B-4D2F-B58F-9C7E81895931}.Release|ARM64.Build.0 = Debug|Any CPU
-		{08354612-A13B-4D2F-B58F-9C7E81895931}.Release|x64.ActiveCfg = Debug|Any CPU
-		{08354612-A13B-4D2F-B58F-9C7E81895931}.Release|x64.Build.0 = Debug|Any CPU
-		{08354612-A13B-4D2F-B58F-9C7E81895931}.Release|x86.ActiveCfg = Debug|Any CPU
-		{08354612-A13B-4D2F-B58F-9C7E81895931}.Release|x86.Build.0 = Debug|Any CPU
 		{38B340F8-6992-4A6B-B704-27495F6E21AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{38B340F8-6992-4A6B-B704-27495F6E21AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{38B340F8-6992-4A6B-B704-27495F6E21AC}.Debug|ARM.ActiveCfg = Debug|Any CPU

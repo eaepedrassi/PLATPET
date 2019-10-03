@@ -8,12 +8,12 @@
     <br />
     <asp:GridView ID="GridView1" runat="server" AllowPaging="True" 
         AutoGenerateColumns="False" BackColor="White" BorderColor="#999999" 
-        BorderStyle="Solid" BorderWidth="1px" CellPadding="3" DataKeyNames="Id" 
+        BorderStyle="Solid" BorderWidth="1px" CellPadding="3" DataKeyNames="IdUsuario" 
         DataSourceID="ObjectDataSource1" EnableModelValidation="True" ForeColor="Black" 
         GridLines="Vertical" onrowdatabound="GridView1_RowDataBound">
         <AlternatingRowStyle BackColor="#CCCCCC" />
         <Columns>
-            <asp:HyperLinkField DataNavigateUrlFields="Id" 
+            <asp:HyperLinkField DataNavigateUrlFields="IdUsuario" 
                 DataNavigateUrlFormatString="editar_usuario.aspx?id={0}" Text="Editar" />
             <asp:TemplateField ShowHeader="False">
                 <ItemTemplate>
@@ -23,13 +23,12 @@
                         Text="Excluir"></asp:LinkButton>
                 </ItemTemplate>
             </asp:TemplateField>
-            <asp:BoundField DataField="Id" HeaderText="Id" SortExpression="Id" />
-            <asp:BoundField DataField="Nome" HeaderText="Nome" SortExpression="Nome" />
-            <asp:BoundField DataField="Email" HeaderText="Email" SortExpression="Email" />
-            <asp:BoundField DataField="Login" HeaderText="Login" SortExpression="Login" />
-            <asp:BoundField DataField="Senha" HeaderText="Senha" SortExpression="Senha" />
-            <asp:CheckBoxField DataField="Ativo" HeaderText="Ativo" 
-                SortExpression="Ativo" />
+            <asp:BoundField DataField="IdUsuario" HeaderText="Codigo" SortExpression="IdUsuario" />
+            <asp:BoundField DataField="NomeEP" HeaderText="Nome" SortExpression="NomeEP" />
+            <asp:BoundField DataField="NomeEP" HeaderText="Sobrenome" SortExpression="NomeEP" />
+            <asp:BoundField DataField="EmailEP" HeaderText="E-mail" SortExpression="EmailEP" />
+            <asp:BoundField DataField="UserUsuario" HeaderText="Usuario" SortExpression="UserUsuario" />
+            <asp:BoundField DataField="PassUsuario" HeaderText="Senha" SortExpression="PassUsuario" />
         </Columns>
         <FooterStyle BackColor="#CCCCCC" />
         <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
@@ -40,7 +39,7 @@
         SelectMethod="ListaUsuarios" TypeName="WebSite.Business.Usuarios" 
         DeleteMethod="ExcluiUsuario">
         <DeleteParameters>
-            <asp:Parameter Name="Id" Type="Int32" />
+            <asp:Parameter Name="IdUsuario" Type="Int32" />
         </DeleteParameters>
     </asp:ObjectDataSource>
     <br />

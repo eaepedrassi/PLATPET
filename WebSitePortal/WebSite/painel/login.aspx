@@ -13,15 +13,17 @@
     <form id="form1" runat="server">
     <div id="geral">
         <fieldset>
-            <h2>Painel de controle</h2>
+            <h2>Painel da Empresa</h2>
             <div id="content_login">
                 <label>Usuário</label>
                 <asp:TextBox ID="txtUsuario" runat="server" />
                 <label>Senha</label>
                 <asp:TextBox ID="txtSenha" runat="server" TextMode="Password" />
                 <br /><br />
-                <asp:Button ID="btnAutenticar" Text="Autenticar" runat="server" 
-                    onclick="btnAutenticar_Click" />    
+                <asp:Button ID="btnAutenticar" Text="Autenticar" runat="server" onclick="btnAutenticar_Click" />
+                <br />
+                <p> <a href="http://localhost:6783/painel/login.aspx" target="_blank">Esqueci minha senha</a></p>
+                <p> <a href="http://localhost:6783/painel/login.aspx" target="_blank">Cadastre-se</a></p>
             </div>
         </fieldset>
     </div>

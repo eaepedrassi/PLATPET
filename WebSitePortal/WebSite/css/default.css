@@ -4,7 +4,7 @@
 }
 body
 {
-    font-family: Tahoma, Verdana, Arial, Sans-Serif, Times New Roman;
+    font-family: Arial, Tahoma, Verdana, Arial, Sans-Serif, Times New Roman;
     padding: 0;
     margin: 0;
 }
@@ -17,9 +17,8 @@ body
 {
 	height: 100%;
 }
-#cabecalho
-{
-    background-color: #f09942;
+#cabecalho {
+    background-color: #A96134;
     height: 150px;
     line-height: 150px;
 }
@@ -53,12 +52,11 @@ body
     color: #fff;
     text-decoration: none;
 }
-#menu ul li a:hover
-{
-    color: #353535;
-    background: #f09942;
-    text-decoration: underline;
-}
+    #menu ul li a:hover {
+        color: #353535;
+        background: #E28249;
+        text-decoration: underline;
+    }
 #conteudo
 {
     clear: both;
@@ -69,7 +67,7 @@ body
 }
 #rodape {
     position: absolute;
-    background-color: #f09942;
+    background-color: #CF7B47;
     width: 100%;
     bottom: 0;
     left: 0;

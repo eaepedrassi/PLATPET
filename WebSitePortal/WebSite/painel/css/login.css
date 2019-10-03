@@ -8,11 +8,10 @@ body
     padding: 0;
     margin: 0;
 }
-#geral
-{
-	position: relative;
-	min-height: 100%;
-	background-color: #f09942;
+#geral {
+    position: relative;
+    min-height: 100%;
+    background-color: #ffffcc;
 }
 * html #geral
 {
@@ -53,13 +52,12 @@ fieldset input[type=text], fieldset input[type=password]
 {
     width: 100%;
 }
-fieldset input[type=button], fieldset input[type=submit]
-{
-    background-color: #f09942;
-    padding: 10px;
-    border: 1px solid #f09942;
-    -msie-border-radius: 8px;
-    -moz-border-radius: 8px;
-    -webkit-border-radius: 8px;
-    font-weight: bold;
-}
+    fieldset input[type=button], fieldset input[type=submit] {
+        background-color: #ffffcc;
+        padding: 10px;
+        border: 1px solid #ffffcc;
+        -msie-border-radius: 8px;
+        -moz-border-radius: 8px;
+        -webkit-border-radius: 8px;
+        font-weight: bold;
+    }

@@ -16,7 +16,7 @@
     <form id="form1" runat="server">
         <div id="geral">
             <div id="cabecalho">
-                <h1 id="logo">Projeto WebSite .NET</h1>
+                <h1 id="logo">Universe Software</h1>
             </div>
             <div id="menu">
                 <%-- Aqui ficou o nosso MenuContro.ascx --%>
@@ -28,7 +28,7 @@
                 </asp:ContentPlaceHolder>
             </div>
             <div id="rodape">
-                &copy; 2012. Projeto WebSite .NET by <a href="http://csharpbrasil.com.br" target="_blank">C# Brasil</a>
+                &copy; 2019. Projeto PLATPET by <a href="http://universesoftware2019.somee.com" target="_blank">Universe Software</a> with ETEC HAS
             </div>
         </div>
     </form>

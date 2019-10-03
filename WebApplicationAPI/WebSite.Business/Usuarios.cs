@@ -64,19 +64,19 @@ namespace WebSite.Business
             {
                 sqlString.AppendLine("WHERE 1 = 1");
 
-                if (usuario.IdUsuario > 0)
-                {
-                    sqlString.AppendLine("AND ID = " + usuario.IdUsuario + "");
-                }
+                //if (usuario.IdUsuario > 0)
+                //{
+                //    sqlString.AppendLine("AND  USUARIO.IDUSUARIO = " + usuario.IdUsuario + "");
+                //}
 
                 if (!string.IsNullOrEmpty(usuario.UserUsuario) && usuario.UserUsuario.Length > 0)
                 {
-                    sqlString.AppendLine("AND USR LIKE '" + usuario.UserUsuario.Replace("'", "''") + "'");
+                    sqlString.AppendLine("AND USUARIO.USERUSUARIO LIKE '" + usuario.UserUsuario.Replace("'", "''") + "'");
                 }
 
                 if (!string.IsNullOrEmpty(usuario.PassUsuario) && usuario.PassUsuario.Length > 0)
                 {
-                    sqlString.AppendLine("AND PASS = '" + usuario.PassUsuario + "'");
+                    sqlString.AppendLine("AND USUARIO.PASSUSUARIO = '" + usuario.PassUsuario + "'");
                 }
             }
 
@@ -150,9 +150,9 @@ namespace WebSite.Business
             return salvou;
         }
 
-        public bool SalvaUsuario(int Id, string Nome, string Email, string Login, string Senha, int Ativo)
+        public bool SalvaUsuario(int Id, string Nome, string Email, string Login, string Senha)
         {
-            return SalvaUsuario(new Entities.Usuarios(Id, Nome, Email, Login, Senha, Ativo));
+            return SalvaUsuario(new Entities.Usuarios(Id, Nome, Email, Login, Senha));
         }
 
         public bool ExcluiUsuario(Entities.Usuarios usuario)

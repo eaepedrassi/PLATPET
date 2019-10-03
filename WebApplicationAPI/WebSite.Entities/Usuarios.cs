@@ -42,14 +42,14 @@ namespace WebSite.Entities
             this.PassUsuario = Senha;
         }
 
-        public Usuarios(int Id, string Nome, string Email, string Login, string Senha, int Ativo)
+        public Usuarios(int Id, string Nome, string Email, string Login, string Senha)
         {
             this.IdUsuario = Id;
             this.NomeEP = Nome;
             this.EmailEP = Email;
             this.UserUsuario = Login;
             this.PassUsuario = Senha;
-            this.StatusUsuario = Ativo;
+           
         }
     }
 }

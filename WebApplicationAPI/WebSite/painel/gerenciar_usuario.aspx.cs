@@ -23,7 +23,7 @@ public partial class painel_gerenciar_usuario : System.Web.UI.Page
             // Pega o Id do usuário na linha atual
             int IdRegistro;
             // Converte o registro atual para Integer
-            int.TryParse(DataBinder.Eval(e.Row.DataItem, "Id", "{0}"), out IdRegistro);
+            int.TryParse(DataBinder.Eval(e.Row.DataItem, "IdUsuario", "{0}"), out IdRegistro);
             
             // Verifica se a sessão nap expirou
             if (Session["Usuario"] != null)

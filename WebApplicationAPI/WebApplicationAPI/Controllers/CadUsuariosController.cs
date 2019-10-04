@@ -15,7 +15,7 @@ namespace WebApplicationAPI.Controllers
         }
 
         // GET: api/Clientes
-        [Route("api/CadUsuario")]
+        [Route("api/CadUsuarios")]
         [HttpGet()]
         public IEnumerable<CadUsuario> List()
         {
@@ -23,7 +23,7 @@ namespace WebApplicationAPI.Controllers
         }
 
         // GET: api/Clientes/5
-        [Route("api/CadUsuario/{id}")]
+        [Route("api/CadUsuarios/{id}")]
         [HttpGet()]
         public CadUsuario GetCadUsuario(int id)
         {
@@ -33,7 +33,7 @@ namespace WebApplicationAPI.Controllers
         }
 
         // POST: api/Clientes   
-        [Route("api/CadUsuarios/{tpuser}")]
+        [Route("api/CadUsuarios/I/{tpuser}")]
         [HttpPost()]
         public void Post([FromBody]CadUsuario cadusuario,int tpuser)
         {
@@ -41,7 +41,7 @@ namespace WebApplicationAPI.Controllers
         }
 
         // PUT: api/Clientes/5
-        [Route("api/CadUsuarios/{tpuser}")]
+        [Route("api/CadUsuarios/U/{tpuser}")]
         [HttpPut()]
         public void Put([FromBody]CadUsuario cadusuario,int tpuser)
         {

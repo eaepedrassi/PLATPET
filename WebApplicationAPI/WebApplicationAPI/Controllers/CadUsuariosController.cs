@@ -15,13 +15,16 @@ namespace WebApplicationAPI.Controllers
         }
 
         // GET: api/Clientes
-        [HttpGet]
+        [Route("api/CadUsuario")]
+        [HttpGet()]
         public IEnumerable<CadUsuario> List()
         {
             return _cadusuariosRepositorio.GetAll();
         }
 
         // GET: api/Clientes/5
+        [Route("api/CadUsuario/{id}")]
+        [HttpGet()]
         public CadUsuario GetCadUsuario(int id)
         {
             var CadUsuario = _cadusuariosRepositorio.GetById(id);
